@@ -1,3 +1,5 @@
+import { uploadFile } from "../api/upload";
+
 export const  getParamsNotNull = (obj)=> {
     for ( var key in obj ){
         if ( obj[key] === '' || obj[key] === null || obj[key] === undefined ){
@@ -5,4 +7,8 @@ export const  getParamsNotNull = (obj)=> {
         }
     }
     return obj
+}
+
+export const uploadImg = (formData) =>{
+   return uploadFile(formData)
 }

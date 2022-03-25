@@ -24,6 +24,14 @@ const routes = [
                     title: '类别管理'
                 },
                 component: () => import ( /* webpackChunkName: "table" */ "../views/typeManage.vue")
+            },
+            {
+                path: "/newsManage",
+                name: "newsManage",
+                meta: {
+                    title: '新闻管理'
+                },
+                component: () => import ( /* webpackChunkName: "table" */ "../views/newsManage.vue")
             }, {
                 path: "/charts",
                 name: "basecharts",

@@ -68,8 +68,8 @@
             <el-form-item label="图标">
               <el-input v-model="form.icon" />
             </el-form-item>
-            <el-form-item label="排序" prop="order">
-              <el-input v-model="form.order" type="number" min="0" step="1" />
+            <el-form-item label="排序" prop="orders">
+              <el-input v-model="form.orders" type="number" min="0" step="1" />
             </el-form-item>
             <el-form-item label="菜单类型" prop="menuType">
               <el-select v-model="form.menuType">
@@ -150,7 +150,7 @@ function getMenuData() {
 const rules = reactive({
   title: [{ required: true, message: "请填写节点名称", trigger: "blur" }],
   menuType: [{ required: true, message: "请选择菜单类型", trigger: "blur" }],
-  order: [
+  orders: [
     {
       validator: validateWholeNumber,
       trigger: "blur",
@@ -185,7 +185,7 @@ function chooseData(data) {
     url: data.url,
     status: data.status,
     buttonRole: data.buttonRole,
-    order: data.order,
+    orders: data.orders,
     menuType: data.menuType,
   };
   form.value = newMenu;
@@ -244,7 +244,7 @@ function onClear() {
   form.value.url = "";
   form.value.icon = "";
   form.value.handletype = "add";
-  form.value.order = "";
+  form.value.orders = "";
   form.value.menuType = "";
   form.value.buttonRole = "";
 }

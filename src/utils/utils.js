@@ -70,6 +70,7 @@ export const transData = (a, idStr, pidStr, childrenStr) => {
     if (hashVP ) {
       !hashVP[children] && (hashVP[children] = []);
       aVal.parentsNode = hashVP;
+      // 如果菜单是按钮，则不添加他的子菜单
       if( hashVP.menuType != '1'){
         continue
       }

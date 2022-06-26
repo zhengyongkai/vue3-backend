@@ -34,7 +34,7 @@
           <template #dropdown>
             <el-dropdown-menu>
               <a
-                href="https://github.com/lin-xin/vue-manage-system"
+                href="https://github.com/zhengyongkai/vue3-backend"
                 target="_blank"
               >
                 <el-dropdown-item>项目仓库</el-dropdown-item>

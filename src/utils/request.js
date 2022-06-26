@@ -4,13 +4,11 @@ import { useRouter } from "vue-router";
 import qs from 'qs'
 import {getParamsNotNull} from '@/utils/utils'
 const service = axios.create({
-  // process.env.NODE_ENV === 'development' 来判断是否开发环境
-  // easy-mock服务挂了，暂时不使用了
-  // baseURL: 'https://www.easy-mock.com/mock/592501a391470c0ac1fab128',
+  // process.env.NODE_ENV === 'development'
   timeout: 5000,
 });
 const env = 'development'
-const api = env === 'development' ? '/Api' : 'http://134.175.103.137:7001'
+const api = env === 'development' ? '/Api' : ''
 service.interceptors.request.use(
   (config) => {
     const token = window.localStorage.getItem('storage_tokenList');

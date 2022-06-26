@@ -14,7 +14,7 @@
         <template v-if="item.subs">
           <el-submenu :index="item.index" :key="item.index">
             <template #title>
-              <i :class="item.icon"></i>
+              <i class="el-icon-user-solid grid-con-icon"></i>
               <span>{{ item.title }}</span>
             </template>
             <template v-for="subItem in item.subs">
@@ -79,6 +79,23 @@ export default {
         ],
       },
 
+      {
+        icon: "el-icon-lx-calendar",
+        index: "4",
+        title: "菜单模块",
+        subs: [
+          {
+            icon: "el-icon-lx-cascades",
+            index: "/MenuManage",
+            title: "添加菜单",
+          },
+          {
+            icon: "el-icon-lx-cascades",
+            index: "/RoleManage",
+            title: "权限配置",
+          },
+        ],
+      },
       // {
       //     icon: "el-icon-lx-copy",
       //     index: "/tabs",

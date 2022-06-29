@@ -59,11 +59,11 @@ export default {
     const message = 2;
 
     const store = useStore();
-    const userInfo = store.state.userInfo ? store.state.userInfo : {};
+    const userInfo = store.state.user.userInfo ? store.state.user.userInfo : {};
     const collapse = computed(() => store.state.collapse);
     // 侧边栏折叠
     const collapseChage = () => {
-      store.commit("handleCollapse", !collapse.value);
+      store.commit("base/handleCollapse", !collapse.value);
     };
 
     onMounted(() => {

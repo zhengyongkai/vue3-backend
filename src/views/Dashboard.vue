@@ -123,8 +123,7 @@ export default {
     components: { Schart },
     setup() {
         const store = useStore()
-        console.log(store.state.userInfo.username)
-        const userInfo = store.state.userInfo ? store.state.userInfo : '无名氏';
+        const userInfo = store.state.user.userInfo ? store.state.user.userInfo : '无名氏';
         const role = name === "admin" ? "超级管理员" : "普通用户";
 
         const data = reactive([

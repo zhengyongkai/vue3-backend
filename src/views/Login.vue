@@ -71,12 +71,12 @@ export default {
             password: param.password,
           }).then((res) => {
             store.dispatch({
-              type: "setLogged",
+              type: "user/setLogged",
               tokenList: res.data.token,
             });
             getUserInfo().then((res) => {
               store.dispatch({
-                type: "setUserInfo",
+                type: "user/setUserInfo",
                 data: {
                   ...res.data,
                 },
@@ -91,7 +91,7 @@ export default {
       });
     };
 
-    store.commit("clearTags");
+    store.commit("base/clearTags");
 
     return {
       param,

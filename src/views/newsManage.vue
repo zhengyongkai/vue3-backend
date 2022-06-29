@@ -207,7 +207,7 @@ export default {
   name: "basetable",
   setup() {
     const store = useStore();
-    const userInfo = store.state.userInfo ? store.state.userInfo : {};
+    const userInfo = store.state.user.userInfo ? store.state.user.userInfo : {};
     const formRef = ref(null);
     const rules = reactive({
       title: [{ required: true, message: "请填写新闻标题", trigger: "blur" }],

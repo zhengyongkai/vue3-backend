@@ -5,7 +5,7 @@ function pathResolve(dir) {
 }
 import { defineConfig } from "vite";
 export default ({ mode }) => {
-  const env = mode === 'development' ? 'http://localhost:7002' : ''
+  const env = mode === 'development' ? 'http://localhost:7001' : ''
   return defineConfig({
     base: "./",
     plugins: [vue()],

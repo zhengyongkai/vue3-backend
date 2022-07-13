@@ -39,26 +39,50 @@
         ref="multipleTable"
         header-cell-class-name="table-header"
       >
-        <el-table-column label="序号" width="55" align="center">
+        <el-table-column
+          label="序号"
+          width="55"
+          align="center"
+        >
           <template #default="scope">
             {{ scope.$index + 1 }}
           </template>
         </el-table-column>
-        <el-table-column prop="title" label="新闻标题"></el-table-column>
-        <el-table-column prop="type_name" label="新闻类型"></el-table-column>
-        <el-table-column prop="text_type" label="图文类型">
+        <el-table-column
+          prop="title"
+          label="新闻标题"
+        ></el-table-column>
+        <el-table-column
+          prop="type_name"
+          label="新闻类型"
+        ></el-table-column>
+        <el-table-column
+          prop="text_type"
+          label="图文类型"
+        >
           <template #default="scope">
             {{ scope.row.text_type === "1" ? "纯文本" : "图文" }}
           </template>
         </el-table-column>
-        <el-table-column prop="content" label="新闻内容">
+        <el-table-column
+          prop="content"
+          label="新闻内容"
+        >
           <template #default="scope">
-            <div class="overflow" :title="scope.row.content">
+            <div
+              class="overflow"
+              :title="scope.row.content"
+            >
               {{ scope.row.content }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="pic" label="首页图片" width="100" align="center">
+        <el-table-column
+          prop="pic"
+          label="首页图片"
+          width="100"
+          align="center"
+        >
           <template #default="scope">
             <img
               v-if="scope.row.frontImgList[0]"
@@ -69,31 +93,42 @@
             />
           </template>
         </el-table-column>
-        <el-table-column prop="user" label="创作者">
+        <el-table-column
+          prop="user"
+          label="创作者"
+        >
           <template #default="scope">
             {{ scope.row.user.nickname }}
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="状态" width="100">
+        <el-table-column
+          prop="status"
+          label="状态"
+          width="100"
+        >
           <template #default="scope">
             {{ scope.row.status === 0 ? "未审核" : "已审核" }}
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="190" align="center">
+        <el-table-column
+          label="操作"
+          width="190"
+          align="center"
+        >
           <template #default="scope">
             <el-button
               type="text"
               icon="el-icon-edit"
               :disabled='scope.row.status != 0'
               @click="handleEdit('edit', scope.$index, scope.row)"
-              >编辑
+            >编辑
             </el-button>
             <el-button
               type="text"
               icon="el-icon-edit"
               :disabled='scope.row.status != 0'
               @click="handlePublish(scope.row)"
-              >发布
+            >发布
             </el-button>
             <el-button
               type="text"
@@ -101,8 +136,7 @@
               class="red"
               :disabled='scope.row.status != 0'
               @click="handleDelete(scope.$index, scope.row)"
-              >删除</el-button
-            >
+            >删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -119,55 +153,99 @@
     </div>
 
     <!-- 编辑弹出框 -->
-    <el-dialog title="编辑" v-model="editVisible" width="60%">
-      <el-form label-width="100px" :rules="rules" ref="formRef" :model="form">
+    <el-dialog
+      title="编辑"
+      v-model="editVisible"
+      width="60%"
+    >
+      <el-form
+        label-width="100px"
+        :rules="rules"
+        ref="formRef"
+        :model="form"
+      >
         <el-row :gutter="23">
           <el-col :span="12">
-            <el-form-item label="新闻标题" prop="title">
+            <el-form-item
+              label="新闻标题"
+              prop="title"
+            >
               <el-input v-model="form.title"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="新闻类型" prop="type_id">
-              <el-select v-model="form.type_id" style="width: 100%">
+            <el-form-item
+              label="新闻类型"
+              prop="type_id"
+            >
+              <el-select
+                v-model="form.type_id"
+                style="width: 100%"
+              >
                 <el-option
                   :value="v.id"
                   :label="v.name"
                   v-for="v in typeDict"
                   :key="v.id"
-                  >{{ v.name }}</el-option
-                >
+                >{{ v.name }}</el-option>
               </el-select>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="23">
           <el-col :span="12">
-            <el-form-item label="图文类型" prop="text_type">
-              <el-select v-model="form.text_type" style="width: 100%">
-                <el-option value="1" label="纯文本">纯文本</el-option>
-                <el-option value="2" label="图文">图文</el-option>
+            <el-form-item
+              label="图文类型"
+              prop="text_type"
+            >
+              <el-select
+                v-model="form.text_type"
+                style="width: 100%"
+              >
+                <el-option
+                  value="1"
+                  label="纯文本"
+                >纯文本</el-option>
+                <el-option
+                  value="2"
+                  label="图文"
+                >图文</el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="创作者">
-              <el-input v-model="form.nickname" disabled></el-input>
+              <el-input
+                v-model="form.nickname"
+                disabled
+              ></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="23">
           <el-col :span="12">
-            <el-form-item label="新闻内容" prop="content">
-              <el-input type="textarea" v-model="form.content"></el-input>
+            <el-form-item
+              label="新闻内容"
+              prop="content"
+            >
+              <el-input
+                type="textarea"
+                v-model="form.content"
+              ></el-input>
             </el-form-item>
           </el-col>
         </el-row>
-        <el-row :gutter="23" v-if="form.text_type === '2'">
+        <el-row
+          :gutter="23"
+          v-if="form.text_type === '2'"
+        >
           <el-col :span="23">
-            <el-form-item label="首页图片" prop="fileList">
+            <el-form-item
+              label="首页图片"
+              prop="fileList"
+            >
               <el-upload
-              action="#"
+                action="#"
                 :on-change="beforeUpload"
                 list-type="picture-card"
                 :on-remove="removeImg"
@@ -176,7 +254,9 @@
                 :auto-upload="false"
                 accept="image/*"
               >
-                <el-icon><Plus /></el-icon>
+                <el-icon>
+                  <Plus />
+                </el-icon>
                 <template #tip>
                   <div class="el-upload__tip">请上传 jpg,png 等图片类型</div>
                 </template>
@@ -188,7 +268,10 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="editVisible = false">取 消</el-button>
-          <el-button type="primary" @click="saveEdit">确 定</el-button>
+          <el-button
+            type="primary"
+            @click="saveEdit"
+          >确 定</el-button>
         </span>
       </template>
     </el-dialog>
@@ -202,10 +285,11 @@ import { getNews, saveNews, deleteNews, publishNews } from "../api/news";
 import { getType } from "../api/type";
 import { uploadImg } from "@/utils/utils";
 import { useStore } from "vuex";
+import { usePageHelper } from '@/hook/page'
 
 export default {
-  name: "basetable",
-  setup() {
+  name: "newsManage",
+  setup () {
     const store = useStore();
     const userInfo = store.state.user.userInfo ? store.state.user.userInfo : {};
     const formRef = ref(null);
@@ -222,16 +306,11 @@ export default {
         { required: true, message: "请选择一张图片", trigger: "change" },
       ],
     });
-    const query = reactive({
-      limit: 5,
-      page: 1,
-      pages: 1,
-    });
-    const tableData = ref([]);
+    const { query, tableData } = usePageHelper();
     const fileList = ref([]);
     const typeDict = ref([]);
     // 获取表格数据
-    const getData = () => {
+    var getData = () => {
       getNews(query).then((res) => {
         tableData.value = res.data.list;
         query.total = res.data.total;
@@ -241,13 +320,9 @@ export default {
     };
     const getTypeApi = () => {
       getType({ limit: 99999 }).then((res) => {
-        console.log(res.data.list);
         typeDict.value = res.data.list;
       });
     };
-    getData();
-    getTypeApi();
-    // 查询操作
     const handleSearch = () => {
       query.page = 1;
       getData();
@@ -257,7 +332,8 @@ export default {
       query.page = val;
       getData();
     };
-
+    getData();
+    getTypeApi();
     // 删除操作
     const handleDelete = (index, row) => {
       // 二次确认删除
@@ -272,7 +348,7 @@ export default {
             }
           });
         })
-        .catch(() => {});
+        .catch(() => { });
     };
     const handlePublish = (row) => {
       publishNews({ id: row.id }).then((res) => {
@@ -296,9 +372,7 @@ export default {
     });
     let idx = -1;
     const handleEdit = (type, index, row) => {
-     
       dialogType.value = type;
-
       Object.keys(form).forEach((item) => {
         form[item] = row[item];
       });
@@ -307,7 +381,6 @@ export default {
       if (type === "add") {
         form.nickname = userInfo.nickname;
         form.user_id = userInfo.id;
-
         form.id = null;
       } else {
         row.frontImgList.forEach((res) => {
@@ -315,7 +388,7 @@ export default {
             form.fileList.push({
               id: res.id,
               name: res.filename,
-              url:  res.img_url,
+              url: res.img_url,
             });
           }
         });
@@ -324,7 +397,7 @@ export default {
       }
       editVisible.value = true;
       setTimeout(() => {
-          formRef.value.clearValidate()
+        formRef.value.clearValidate()
       }, 100);
     };
     const saveImg = (callback) => {
@@ -402,7 +475,7 @@ export default {
       rules,
       formRef,
       handlePublish,
-      
+
     };
   },
 };

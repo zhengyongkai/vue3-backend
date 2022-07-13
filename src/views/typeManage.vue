@@ -14,15 +14,16 @@
           placeholder="类别名称"
           class="handle-input mr10"
         ></el-input>
-        <el-button type="primary" icon="el-icon-search" @click="handleSearch"
-          >搜索</el-button
-        >
+        <el-button
+          type="primary"
+          icon="el-icon-search"
+          @click="handleSearch"
+        >搜索</el-button>
         <el-button
           type="primary"
           icon="el-icon-search"
           @click="handleEdit('add', -1, {})"
-          >新增</el-button
-        >
+        >新增</el-button>
       </div>
       <el-table
         :data="tableData"
@@ -31,27 +32,37 @@
         ref="multipleTable"
         header-cell-class-name="table-header"
       >
-        <el-table-column label="序号" width="55" align="center">
+        <el-table-column
+          label="序号"
+          width="55"
+          align="center"
+        >
           <template #default="scope">
             {{ scope.$index + 1 }}
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="类别名称"></el-table-column>
-        <el-table-column label="操作" width="180" align="center">
+        <el-table-column
+          prop="name"
+          label="类别名称"
+        ></el-table-column>
+        <el-table-column
+          label="操作"
+          width="180"
+          align="center"
+        >
           <template #default="scope">
             <el-button
               type="text"
               icon="el-icon-edit"
               @click="handleEdit('edit', scope.$index, scope.row)"
-              >编辑
+            >编辑
             </el-button>
             <el-button
               type="text"
               icon="el-icon-delete"
               class="red"
               @click="handleDelete(scope.$index, scope.row)"
-              >删除</el-button
-            >
+            >删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -68,7 +79,11 @@
     </div>
 
     <!-- 编辑弹出框 -->
-    <el-dialog title="编辑" v-model="editVisible" width="30%">
+    <el-dialog
+      title="编辑"
+      v-model="editVisible"
+      width="30%"
+    >
       <el-form label-width="70px">
         <el-form-item label="类别名称">
           <el-input v-model="form.name"></el-input>
@@ -77,7 +92,10 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="editVisible = false">取 消</el-button>
-          <el-button type="primary" @click="saveEdit">确 定</el-button>
+          <el-button
+            type="primary"
+            @click="saveEdit"
+          >确 定</el-button>
         </span>
       </template>
     </el-dialog>
@@ -88,19 +106,14 @@
 import { ref, reactive } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { getType, saveType, deleteType } from "../api/type";
+import { usePageHelper } from '@/hook/page'
 
 export default {
   name: "basetable",
-  setup() {
-    const query = reactive({
-      name: "",
-      limit: 5,
-      page: 1,
-      pages: 1,
-    });
-    const tableData = ref([]);
+  setup () {
+    const { query, tableData } = usePageHelper(getData);
     // 获取表格数据
-    const getData = () => {
+    var getData = () => {
       getType(query).then((res) => {
         tableData.value = res.data.list;
         query.total = res.data.total;
@@ -108,8 +121,6 @@ export default {
         query.page = res.data.page;
       });
     };
-    getData();
-    // 查询操作
     const handleSearch = () => {
       query.page = 1;
       getData();
@@ -134,7 +145,7 @@ export default {
             }
           });
         })
-        .catch(() => {});
+        .catch(() => { });
     };
 
     // 表格编辑时弹窗和保存
@@ -162,6 +173,8 @@ export default {
         }
       });
     };
+
+    getData();
 
     return {
       query,

@@ -111,7 +111,7 @@ import { usePageHelper } from '@/hook/page'
 export default {
   name: "basetable",
   setup () {
-    const { query, tableData } = usePageHelper(getData);
+    const { query, tableData } = usePageHelper();
     // 获取表格数据
     var getData = () => {
       getType(query).then((res) => {

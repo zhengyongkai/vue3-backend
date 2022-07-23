@@ -17,7 +17,7 @@
             :key="item.index"
           >
             <template #title>
-              <i class="el-icon-user-solid grid-con-icon"></i>
+              <i :class="item.icon"></i>
               <span>{{ item.title }}</span>
             </template>
             <template v-for="subItem in item.subs">
@@ -70,7 +70,7 @@ export default {
         title: "系统首页",
       },
       {
-        icon: "el-icon-lx-calendar",
+        icon: "el-icon-chat-line-round",
         index: "3",
         title: "新闻模块",
         subs: [

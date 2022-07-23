@@ -1,18 +1,16 @@
 import axios from 'axios';
 import { ElNotification } from 'element-plus';
 import { useRouter } from 'vue-router';
-import qs from 'qs';
+// import qs from 'qs';
 import { getParamsNotNull } from '@/utils/utils';
 const service = axios.create({
   // process.env.NODE_ENV === 'development'
+  baseURL: import.meta.env.VITE_APP_BASE_PROXY,
   timeout: 5000,
 });
-const env = 'development';
-const api = env === 'development' ? '/Api' : '';
 service.interceptors.request.use(
   (config) => {
     const token = window.localStorage.getItem('storage_tokenList');
-    config.url = api + config.url;
     if (config.method === 'post' && !config.file) {
       config.headers = {
         'content-type': 'application/json',
@@ -34,7 +32,7 @@ service.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject();
+    return Promise.reject(error);
   }
 );
 
@@ -53,11 +51,11 @@ service.interceptors.response.use(
           type: 'error',
         });
       }
-      return Promise.reject();
+      return Promise.reject(data);
     }
   },
   (error) => {
-    return Promise.reject();
+    return Promise.reject(error);
   }
 );
 

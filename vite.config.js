@@ -1,30 +1,30 @@
-import vue from "@vitejs/plugin-vue";
-import { resolve } from "path";
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
 function pathResolve(dir) {
-  return resolve(__dirname, ".", dir);
+  return resolve(__dirname, '.', dir);
 }
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from 'vite';
 export default ({ mode }) => {
-  const env = mode === 'development' ? 'http://localhost:7001' : ''
   return defineConfig({
-    base: "./",
+    base: './',
     plugins: [vue()],
     optimizeDeps: {
-      include: ["schart.js"],
+      include: ['schart.js'],
     },
     resolve: {
       alias: {
-        "@": pathResolve("src"),
+        '@': pathResolve('src'),
       },
     },
     server: {
       cors: true,
-      open: true,
+      open: false,
       proxy: {
-        "/Api": {
-          target: env, //代理接口
+        '/proxy': {
+          // 记载本地配置
+          target: loadEnv(mode, process.cwd()).VITE_APP_BASE_API, //代理接口
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/Api/, ""),
+          rewrite: (path) => path.replace(/^\/proxy/, ''),
         },
       },
     },

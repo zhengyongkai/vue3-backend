@@ -1,15 +1,20 @@
 import axios from 'axios';
 import { ElNotification } from 'element-plus';
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 // import qs from 'qs';
 import { getParamsNotNull } from '@/utils/utils';
+import nProgress from 'nprogress';
+
 const service = axios.create({
   // process.env.NODE_ENV === 'development'
   baseURL: import.meta.env.VITE_APP_BASE_PROXY,
   timeout: 5000,
 });
+// 状态参照表
+const statusMap = {};
 service.interceptors.request.use(
   (config) => {
+    nProgress.start();
     const token = window.localStorage.getItem('storage_tokenList');
     if (config.method === 'post' && !config.file) {
       config.headers = {
@@ -38,24 +43,26 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   ({ status, data }) => {
+    nProgress.done();
     if (status === 200) {
       if (data.code === 200) {
         return data;
       }
-      if (data.code === 401) {
-        location.href = '/#/login';
-      }
-      if (data.code === 500) {
-        return ElNotification({
-          message: data.msg,
-          type: 'error',
-        });
-      }
+
       return Promise.reject(data);
     }
   },
-  (error) => {
-    return Promise.reject(error);
+  ({ response }) => {
+    nProgress.done();
+    if (response.status === 401 || response.status === 403) {
+      location.href = '/#/login';
+    }
+    ElNotification({
+      message: response.data.msg,
+      type: 'error',
+    });
+
+    return Promise.reject(response);
   }
 );
 

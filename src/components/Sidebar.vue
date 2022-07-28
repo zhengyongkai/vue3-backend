@@ -104,6 +104,19 @@ export default {
           },
         ],
       },
+      // {
+      //   icon: "el-icon-lx-calendar",
+      //   index: "5",
+      //   title: "组件",
+      //   subs: [
+      //     {
+      //       icon: "el-icon-lx-cascades",
+      //       index: "/baseEcharts",
+      //       title: "3d柱状",
+      //     },
+
+      //   ],
+      // },
     ];
 
     const route = useRoute();

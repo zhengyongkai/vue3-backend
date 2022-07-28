@@ -54,6 +54,9 @@ service.interceptors.response.use(
   },
   ({ response }) => {
     nProgress.done();
+    if (!response) {
+      return Promise.reject(response);
+    }
     if (response.status === 401 || response.status === 403) {
       location.href = '/#/login';
     }

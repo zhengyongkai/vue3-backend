@@ -333,7 +333,7 @@ function onClear () {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
-  height: calc(100vh - 200px);
+  max-height: calc(100vh - 100px);
 }
 
 .basic-menu-container .icons {

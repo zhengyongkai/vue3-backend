@@ -44,6 +44,14 @@ const routes = [
         component: () => import('../views/Menu/MenuManage.vue'),
       },
       {
+        path: '/userManage',
+        name: 'UserManage',
+        meta: {
+          title: '用户管理',
+        },
+        component: () => import('../views/User/UserManage.vue'),
+      },
+      {
         path: '/baseEcharts',
         name: 'baseEcharts',
         meta: {

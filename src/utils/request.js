@@ -53,6 +53,7 @@ service.interceptors.response.use(
     }
   },
   ({ response }) => {
+    console.log(response)
     nProgress.done();
     if (!response) {
       return Promise.reject(response);

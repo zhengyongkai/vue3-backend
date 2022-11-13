@@ -167,16 +167,17 @@
 
 <script>
 import Schart from "vue-schart";
-import { reactive } from "vue";
+import { reactive , inject} from "vue";
 import { mapState, useStore } from 'vuex'
 export default {
   name: "dashboard",
   components: { Schart },
+  created(){
+  },
   setup () {
     const store = useStore()
     const userInfo = store.state.user.userInfo ? store.state.user.userInfo : '无名氏';
     const role = name === "admin" ? "超级管理员" : "普通用户";
-
     const data = reactive([
       {
         name: "2018/09/04",

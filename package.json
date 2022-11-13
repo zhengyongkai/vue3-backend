@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --mode dev",
+    "dev-install": "cnpm install & npm run dev",
     "dev:local": "vite --mode dev",
     "build": "vite build --mode prod",
     "serve": "vite preview"
@@ -21,6 +22,7 @@
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.10",
     "vue-schart": "^2.0.0",
+    "vue-socket-kevin.io": "^0.0.1-beta",
     "vuex": "^4.0.2",
     "wangeditor": "^4.7.4"
   },

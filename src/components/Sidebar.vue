@@ -97,10 +97,22 @@ export default {
             index: "/MenuManage",
             title: "添加菜单",
           },
+          // {
+          //   icon: "el-icon-lx-cascades",
+          //   index: "/RoleManage",
+          //   title: "权限配置",
+          // },
+        ],
+      },
+       {
+        icon: "el-icon-lx-group",
+        index: "5",
+        title: "用户模块",
+        subs: [
           {
-            icon: "el-icon-lx-cascades",
-            index: "/RoleManage",
-            title: "权限配置",
+            icon: "el-icon-lx-group",
+            index: "/UserManage",
+            title: "用户管理",
           },
         ],
       },

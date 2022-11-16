@@ -172,7 +172,8 @@ import { mapState, useStore } from 'vuex'
 export default {
   name: "dashboard",
   components: { Schart },
-  created(){
+  beforeMount(){
+    console.log(this.$store)
   },
   setup () {
     const store = useStore()

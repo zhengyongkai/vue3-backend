@@ -14,7 +14,7 @@
         class="el-icon-s-unfold"
       ></i>
     </div>
-    <div class="logo">管理系统</div>
+    <div class="logo">Kevins 的 管理系统</div>
     <div class="header-right">
       <div class="header-user-con">
         <!-- 消息中心 -->

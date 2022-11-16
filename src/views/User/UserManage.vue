@@ -34,6 +34,11 @@
         <el-table-column prop="nickname" label="昵称"></el-table-column>
         <el-table-column prop="signature" label="个人签名"></el-table-column>
         <el-table-column prop="work" label="职业"></el-table-column>
+         <el-table-column prop="ctime" label="创建时间">
+          <template #default="scope">
+            {{$day(new Date(Number(scope.row.ctime))).format('YYYY/MM/DD')}}
+          </template>
+         </el-table-column>
         <el-table-column prop="pic" label="用户照片" width="100" align="center">
           <template #default="scope">
             <img :src="scope.row.avatar" style="width: 40px; height: 40px" />

@@ -235,9 +235,12 @@ function chooseData (data) {
 function onSubmit () {
   ruleFormRef.value.validate((valid, fields) => {
     if (valid) {
-      let message = form.value.handletype === "add" ? "新增" : "修改";
+      let message = ''
       if (form.value.handletype === "add" || !form.value.id) {
+        message = '新增'
         delete form.value.id;
+      } else {
+        message = '修改'
       }
       saveMenu(form.value).then((res) => {
         if (responseNotify(res)) {

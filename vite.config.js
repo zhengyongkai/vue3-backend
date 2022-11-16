@@ -5,6 +5,7 @@ function pathResolve(dir) {
 }
 import { defineConfig, loadEnv } from 'vite';
 export default ({ mode }) => {
+  console.log('123',loadEnv(mode, process.cwd()).VITE_APP_BASE_API);
   return defineConfig({
     base: './',
     plugins: [vue()],

@@ -1,60 +1,80 @@
-import {createRouter, createWebHashHistory} from "vue-router";
-import Home from "../views/Home.vue";
+import { createRouter, createWebHashHistory } from 'vue-router';
+import Home from '../views/Home.vue';
 
 const routes = [
-    {
-        path: '/',
-        redirect: '/dashboard'
-    }, {
-        path: "/",
-        name: "Home",
-        component: Home,
-        children: [
-            {
-                path: "/dashboard",
-                name: "dashboard",
-                meta: {
-                    title: '系统首页'
-                },
-                component: () => import ( /* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
-            }, {
-                path: "/typeManage",
-                name: "typeManage",
-                meta: {
-                    title: '类别管理'
-                },
-                component: () => import ( /* webpackChunkName: "table" */ "../views/typeManage.vue")
-            },
-            {
-                path: "/newsManage",
-                name: "newsManage",
-                meta: {
-                    title: '新闻管理'
-                },
-                component: () => import ( /* webpackChunkName: "table" */ "../views/newsManage.vue")
-            }, 
-            {
-                path: "/MenuManage",
-                name: "MenuManage",
-                meta: {
-                    title: '菜单管理'
-                },
-                component: () => import ( /* webpackChunkName: "table" */ "../views/Menu/MenuManage.vue")
-            }
-        ]
-    }, {
-        path: "/login",
-        name: "Login",
+  {
+    path: '/',
+    redirect: '/dashboard',
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+    children: [
+      {
+        path: '/dashboard',
+        name: 'dashboard',
         meta: {
-            title: '登录'
+          title: '系统首页',
         },
-        component: () => import ( /* webpackChunkName: "login" */ "../views/Login.vue")
-    }
+        component: () => import('../views/Dashboard.vue'),
+      },
+      {
+        path: '/typeManage',
+        name: 'typeManage',
+        meta: {
+          title: '类别管理',
+        },
+        component: () => import('../views/typeManage.vue'),
+      },
+      {
+        path: '/newsManage',
+        name: 'newsManage',
+        meta: {
+          title: '新闻管理',
+        },
+        component: () => import('../views/newsManage.vue'),
+      },
+      {
+        path: '/MenuManage',
+        name: 'MenuManage',
+        meta: {
+          title: '菜单管理',
+        },
+        component: () => import('../views/Menu/MenuManage.vue'),
+      },
+      {
+        path: '/baseEcharts',
+        name: 'baseEcharts',
+        meta: {
+          title: '3d图表',
+        },
+        component: () => import('../views/Components/echarts.vue'),
+      },
+      {
+        path: '/chat',
+        name: 'chat',
+        meta: {
+          title: '聊天',
+        },
+        component: () => import('../views/Chat/chat.vue'),
+      },
+    ],
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      title: '登录',
+    },
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+  },
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes
+  history: createWebHashHistory(),
+  routes,
 });
 
 // router.beforeEach((to, from, next) => {

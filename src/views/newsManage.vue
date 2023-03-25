@@ -417,7 +417,6 @@ export default {
           });
         } else {
           imgData.push(res.id);
-          console.log("33333", imgData);
           if (index + 1 === form.fileList.length)
             callback && callback(imgData.join(","));
         }

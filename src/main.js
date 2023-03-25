@@ -15,7 +15,7 @@ Object.keys(Icons).forEach((key) => {
 
 const socket = new WebsocketClass(
   'ws://127.0.0.1:7001/chat/' +
-    JSON.parse(localStorage.getItem('userInfo') || '{}').userid || '',
+    JSON.parse(localStorage.getItem('userInfo') || '{}').id || '',
   {
     protocol: [],
     reconnection: true,

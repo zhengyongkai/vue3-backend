@@ -39,7 +39,7 @@
         <div class="title cell">你正在与 ({{ currentUser.name }}) 聊天</div>
         <div class="chat-body" :class="[currentUser.name ? 'white' : '']">
           <div v-for="i in messageList">
-            <div class="chat" v-if="i.formid === '0'">
+            <div class="chat" v-if="i.formid === userId">
               <div style="color: black">{{ i.formid }}</div>
               <div class="tri"></div>
               <div class="span">
@@ -54,8 +54,8 @@
           </div>
         </div>
         <div class="chat-handle" v-if="currentUser.id">
-          <input v-model="value" @keyup.enter="send" />
-          <button @click="send">发送消息</button>
+          <input v-model="value" @keyup.enter="send()" />
+          <button @click="send()">发送消息</button>
         </div>
       </div>
     </div>
@@ -83,6 +83,7 @@ const store = useStore();
 const currentUser = ref({});
 const value = ref("");
 const messageList = ref([]);
+const userId = String(store.state.user.userInfo.id);
 const chatLists = ref([
   {
     id: "-1",
@@ -92,35 +93,35 @@ const chatLists = ref([
     type: "onPerson",
   },
   {
-    id: 1,
-    name: "蔡子敏1",
+    id: "1",
+    name: "郑永楷",
     avatar: img,
     unchat: 0,
     type: "onPerson",
   },
   {
-    id: 2,
+    id: "2",
     name: "蔡子敏2",
     avatar: img,
     unchat: 0,
     type: "onPerson",
   },
   {
-    id: 3,
-    name: "蔡子敏3",
+    id: "3",
+    name: "cai",
     avatar: img,
     unchat: 0,
     type: "onPerson",
   },
   {
-    id: 4,
+    id: "4",
     name: "蔡子敏4",
     avatar: img,
     unchat: 0,
     type: "onPerson",
   },
   {
-    id: 5,
+    id: "5",
     name: "蔡子敏5",
     avatar: img,
     unchat: 0,
@@ -159,6 +160,7 @@ onMounted(() => {
     }
     if (type === "OnMessage") {
       if (msg.formid === currentUser.value.id) {
+       
         messageList.value.push(msg);
       } else {
         let data = chatLists.value.filter((data) => {
@@ -229,15 +231,16 @@ function click(list) {
   messageList.value = arr;
 }
 
-function send() {
+function send(id) {
   if (value.value === "" || !value) {
     ElMessage.warning("请输入内容在发送");
   }
   var msg = {};
+  
   msg = {
     type: currentUser.value.type,
     receviewId: currentUser.value.id,
-    formid: "0",
+    formid: userId,
     msg: value.value,
   };
   value.value = "";
